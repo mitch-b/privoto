@@ -1,0 +1,52 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'tomcat'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+jettyRun {
+	httpPort = 9080
+	contextPath = "/"
+}
+
+tomcatRun {
+    httpPort = 8080
+    contextPath = "/"
+}
+
+repositories {
+    mavenCentral()
+
+}
+
+dependencies {
+    compile "javax.servlet.jsp.jstl:jstl-api:1.2"
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
+    def springVersion = '4.1.1.RELEASE'
+    compile "org.springframework:spring-core:$springVersion"
+    compile "org.springframework:spring-web:$springVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+
+
+
+    def tomcatVersion = '7.0.50'
+    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+           "org.apache.tomcat:coyote:${tomcatVersion}",
+           "org.apache.tomcat:jasper:${tomcatVersion}"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}

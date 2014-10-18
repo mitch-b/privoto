@@ -32,20 +32,21 @@ public class MessageController {
         Message msg = new Message();
 
         if (image.isEmpty()) {
+            msg.setErrorMessage("ERROR: File contents empty");
             return gson.toJson(msg);
         }
 
 
-
         try {
-            byte[] file = image.getBytes();
+            msg.setData(image.getBytes());
+            msg.setId(UUID.randomUUID());
+            msg.setType(MessageType.Image);
+
+            // create storage directory
             File dir = new File(uploadDirectory +
                     File.separator + "uploads");
             if (!dir.exists())
                 dir.mkdirs();
-
-            msg.setId(UUID.randomUUID());
-            msg.setType(MessageType.Image);
 
             // create the file
             File newImage = new File(dir.getAbsolutePath() +
@@ -55,14 +56,14 @@ public class MessageController {
                     new FileOutputStream(newImage)
             );
 
-            stream.write(file);
-
+            stream.write(msg.getData());
             stream.close();
 
-        } catch (Exception e) {
-            // log e
-        }
+            msg.setErrorMessage(null);
 
+        } catch (Exception e) {
+            msg.setErrorMessage(String.format("ERROR: %s - %s", e.getMessage(), e.getStackTrace()));
+        }
 
         return gson.toJson(msg);
     }

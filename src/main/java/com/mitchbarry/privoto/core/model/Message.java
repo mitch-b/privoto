@@ -26,6 +26,8 @@ public class Message {
 
     private byte[] data;
 
+    private String errorMessage;
+
     public UUID getId() {
         return id;
     }
@@ -64,5 +66,13 @@ public class Message {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

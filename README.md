@@ -30,9 +30,8 @@ To quickly run the project from IntelliJ IDEA, set up a Local Tomcat run configu
 1. From the menu, choose `Run > Edit Configurations ...`
 1. Click the `+` button to add a new configuration.
 1. Choose Tomcat Server > Local
-1. Scroll this window down and click the `+` button to add another step after Make.
-1. Choose Build Artifact > `privoto.war` (not exploded).
 1. Add a name to your configuration (optional) and which browser you want to open on Run (optional).
+1. Click the Deployment tab. Choose the `+` >  `Artifact...` > `privoto.war` (not exploded).
 
 Now, you should see the Run icon available at the top of the editor. Give it a go.
 

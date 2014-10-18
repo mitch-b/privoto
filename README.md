@@ -23,7 +23,18 @@ privoto is built using:
 
 Inside IntelliJ IDEA, choose 'Import Project', navigate to where you extracted **privoto**. Choose `build.gradle` in this folder during the import. This will make sure the project is imported with the Gradle window for building.
 
-Keep the Gradle wrapper selected and continue through the prompt. The project should now be imported! You can open the Gradle tool window and click the refresh button. Any time you change dependencies in `build.gradle`, you can click the refresh button to update IntelliJ references. 
+Keep the Gradle wrapper selected and continue through the prompt. The project should now be imported! You can open the Gradle tool window and click the refresh button. Any time you change dependencies in `build.gradle`, you can click the refresh button to update IntelliJ references.
+
+To quickly run the project from IntelliJ IDEA, set up a Local Tomcat run configuration.
+
+1. From the menu, choose `Run > Edit Configurations ...`
+1. Click the `+` button to add a new configuration.
+1. Choose Tomcat Server > Local
+1. Scroll this window down and click the `+` button to add another step after Make.
+1. Choose Build Artifact > `privoto.war` (not exploded).
+1. Add a name to your configuration (optional) and which browser you want to open on Run (optional).
+
+Now, you should see the Run icon available at the top of the editor. Give it a go.
 
 #Configuration
 

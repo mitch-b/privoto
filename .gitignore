@@ -1,7 +1,9 @@
+
 .idea
 build/
 .gradle
 out/
+*.iml
 
 # Java class files
 *.class
@@ -11,5 +13,9 @@ out/
 
 # Windows thumbnail db
 Thumbs.db
+
+## File-based project format:
+*.ipr
+*.iws
 
 

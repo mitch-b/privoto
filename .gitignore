@@ -1,4 +1,15 @@
-.idea/workspace.xml
+.idea
 build/
-.gradle/
+.gradle
 out/
+
+# Java class files
+*.class
+
+# OSX files
+.DS_Store
+
+# Windows thumbnail db
+Thumbs.db
+
+

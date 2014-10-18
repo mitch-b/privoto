@@ -24,7 +24,7 @@ public class MessageController {
 
     private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-    @Value("${upload.dir}")
+    @Value("${storage.dir}")
     private String uploadDirectory;
 
     @RequestMapping(value = "/api/message/image", method = RequestMethod.POST)

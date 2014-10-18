@@ -19,6 +19,12 @@ privoto is built using:
 1. Spring MVC Framework (downloaded with Gradle)
 1. Gradle (Gradle wrapper provided in source - no separate download needed)
 
+#Opening the Project
+
+Inside IntelliJ IDEA, choose 'Import Project', navigate to where you extracted **privoto**. Choose `build.gradle` in this folder during the import. This will make sure the project is imported with the Gradle window for building.
+
+Keep the Gradle wrapper selected and continue through the prompt. The project should now be imported! You can open the Gradle tool window and click the refresh button. Any time you change dependencies in `build.gradle`, you can click the refresh button to update IntelliJ references. 
+
 #Configuration
 
 1. Setup Message Storage Directory

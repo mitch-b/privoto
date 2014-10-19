@@ -48,9 +48,7 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 
 #License
 
-**privoto** is provided under the MIT License. [Read it here](https://raw.githubusercontent.com/mitch-b/privoto/master/LICENSE).
-
-**privoto** is built on the following open source libraries:
+**privoto** is provided under the [MIT License](https://raw.githubusercontent.com/mitch-b/privoto/master/LICENSE), and is built on the following open source libraries:
 
 1. Google Gson - [Apache v2](https://google-gson.googlecode.com/svn/trunk/gson/LICENSE)
 1. Apache Commons IO - [Apache v2](http://www.apache.org/licenses/LICENSE-2.0)

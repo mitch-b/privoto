@@ -2,8 +2,10 @@ package com.mitchbarry.privoto.core.controller.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mitchbarry.privoto.core.interfaces.IMessageService;
 import com.mitchbarry.privoto.core.model.Message;
 import com.mitchbarry.privoto.core.model.MessageType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -24,11 +27,27 @@ public class MessageController {
 
     private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
+    private IMessageService msgService;
+
+    @Autowired
+    public MessageController(IMessageService messageService) {
+        this.msgService = messageService;
+    }
+
     @Value("${storage.dir}")
     private String uploadDirectory;
 
+    @RequestMapping(value = "/api/message", method = RequestMethod.GET)
+    public String getMessageList() {
+        // TODO: get only for user asking
+        ArrayList<Message> messages = msgService.getMessages();
+        return gson.toJson(messages);
+    }
+
     @RequestMapping(value = "/api/message/image", method = RequestMethod.POST)
-    public String postImageMessage(@RequestParam(value = "image", required = true, defaultValue = "") MultipartFile image) {
+    public String postImageMessage(
+            @RequestParam(value = "image", required = true, defaultValue = "") MultipartFile image,
+            @RequestParam(value = "decay", required = false, defaultValue = "-1") long decay) {
         Message msg = new Message();
 
         if (image.isEmpty()) {
@@ -43,8 +62,7 @@ public class MessageController {
             msg.setType(MessageType.Image);
 
             // create storage directory
-            File dir = new File(uploadDirectory +
-                    File.separator + "uploads");
+            File dir = new File(this.uploadDirectory);
             if (!dir.exists())
                 dir.mkdirs();
 

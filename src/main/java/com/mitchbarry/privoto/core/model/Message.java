@@ -24,6 +24,9 @@ public class Message {
     @Expose
     private MessageType type;
 
+    @Expose
+    private String url;
+
     private byte[] data;
 
     private String errorMessage;
@@ -58,6 +61,14 @@ public class Message {
 
     public void setType(MessageType type) {
         this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public byte[] getData() {

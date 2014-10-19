@@ -37,9 +37,14 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 
 #Configuration
 
-1. Setup Message Storage Directory
+1. Setup User-Specific Application Settings
 
-**privoto** needs to know where to drop messages on the system. Set this property in `/src/main/resources/application.properties`.
+**privoto** needs to know where to drop messages on the system, and other customizable settings. Update the properties found in `/src/main/resources/application.properties` to fit your needs.
+
+- `storage.dir` : where files are dropped (may change to db storage in future update?)
+- `protocol` : `[http|https]`
+- `hostname` : used for API response URL
+- `upload.size.image` : maximum image upload size (prevent huge uploads)
 
 #License
 
@@ -50,4 +55,3 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 1. Google Gson - [Apache v2](https://google-gson.googlecode.com/svn/trunk/gson/LICENSE)
 1. Apache Commons IO - [Apache v2](http://www.apache.org/licenses/LICENSE-2.0)
 1. Apache Commons FileUpload - [Apache v2](http://www.apache.org/licenses/LICENSE-2.0)
-

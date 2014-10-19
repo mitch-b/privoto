@@ -1,6 +1,7 @@
 package com.mitchbarry.privoto.core.config;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -23,6 +25,10 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 //Pull application properties in
 @PropertySource("classpath:/application.properties")
 public class WebConfig {
+
+    @Value("${upload.size.image}")
+    private long uploadSize;
+
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -33,9 +39,16 @@ public class WebConfig {
     }
 
     @Bean
+    public RequestMappingHandlerMapping handlerMapping() {
+        RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+        handlerMapping.setAlwaysUseFullPath(true);
+        return handlerMapping;
+    }
+
+    @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setMaxUploadSize(100000);
+        resolver.setMaxUploadSize(uploadSize);
         return resolver;
     }
 

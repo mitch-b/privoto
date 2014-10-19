@@ -54,11 +54,12 @@ public class MessageController {
     @RequestMapping(value = "/api/messages", method = RequestMethod.POST)
     public String postImageMessage(
             @RequestParam(value = "image", required = false) MultipartFile image,
-            @RequestParam(value = "text", required = false, defaultValue = "") String text,
-            @RequestParam(value = "decay", required = false, defaultValue = "-1") long decay) {
+            @RequestParam(value = "text", required = false) String text,
+            @RequestParam(value = "decay", defaultValue = "-1") long decay) {
+
         Message msg = new Message();
 
-        if (image.isEmpty()) {
+        if (image == null || image.isEmpty()) {
             msg.setErrorMessage("ERROR: File contents empty");
             return gson.toJson(msg);
         }

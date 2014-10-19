@@ -39,7 +39,7 @@ public class FileBasedMessageService implements IMessageService {
             if (!fileEntry.isDirectory()) { // do not search recursively ... this is short-term until db
                 Message msg = new Message();
                 msg.setId(UUID.fromString(fileEntry.getName()));
-                msg.setUrl(String.format("%s://%s/api/image/%s", protocol, hostname, msg.getId()));
+                msg.setUrl(String.format("%s://%s/api/images/%s", protocol, hostname, msg.getId()));
                 messages.add(msg);
             }
         }

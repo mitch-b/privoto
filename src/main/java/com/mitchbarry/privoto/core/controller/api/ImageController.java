@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Mitchell Barry on 10/18/14.
  */
 @RestController
-@RequestMapping("/api/image/**")
+@RequestMapping("/api/images/**")
 public class ImageController {
 
     private IImageService imageService;
@@ -19,7 +19,7 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @RequestMapping(value = "/api/image/{id}*", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/api/images/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getImage(@PathVariable("id") String id) {
         return this.imageService.getImage(id);
     }

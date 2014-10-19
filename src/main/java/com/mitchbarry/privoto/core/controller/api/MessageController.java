@@ -37,16 +37,24 @@ public class MessageController {
     @Value("${storage.dir}")
     private String uploadDirectory;
 
-    @RequestMapping(value = "/api/message", method = RequestMethod.GET)
-    public String getMessageList() {
+    @RequestMapping(value = {"/api/v1/messages"}, method = RequestMethod.GET)
+    public String getMessageList_v1() {
         // TODO: get only for user asking
         ArrayList<Message> messages = msgService.getMessages();
         return gson.toJson(messages);
     }
 
-    @RequestMapping(value = "/api/message/image", method = RequestMethod.POST)
+    @RequestMapping(value = {"/api/messages", "/api/v2/messages"}, method = RequestMethod.GET)
+    public String getMessageList_v2() {
+        // TODO: get only for user asking
+        ArrayList<Message> messages = msgService.getMessages();
+        return gson.toJson(messages);
+    }
+
+    @RequestMapping(value = "/api/messages", method = RequestMethod.POST)
     public String postImageMessage(
-            @RequestParam(value = "image", required = true, defaultValue = "") MultipartFile image,
+            @RequestParam(value = "image", required = false) MultipartFile image,
+            @RequestParam(value = "text", required = false, defaultValue = "") String text,
             @RequestParam(value = "decay", required = false, defaultValue = "-1") long decay) {
         Message msg = new Message();
 
@@ -82,13 +90,6 @@ public class MessageController {
         } catch (Exception e) {
             msg.setErrorMessage(String.format("ERROR: %s - %s", e.getMessage(), e.getStackTrace()));
         }
-
-        return gson.toJson(msg);
-    }
-
-    @RequestMapping(value = "/api/message/text", method = RequestMethod.POST)
-    public String postTextMessage() {
-        Message msg = new Message();
 
         return gson.toJson(msg);
     }

@@ -1,7 +1,7 @@
 privoto
 =======
 
-Sharing private messages
+Messaging platform. Built on Spring MVC 4 as a learning exercise.
 
 #Getting Started
 
@@ -18,6 +18,8 @@ $ git clone https://github.com/mitch-b/privoto
 1. Tomcat 7 ([Download](http://tomcat.apache.org/download-70.cgi))
 1. Spring MVC Framework (downloaded with Gradle)
 1. Gradle (Gradle wrapper provided in source - no separate download needed)
+
+*download links may not be current*
 
 #Opening the Project
 
@@ -44,7 +46,7 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 - `storage.dir` : where files are dropped (may change to db storage in future update?)
 - `protocol` : `[http|https]`
 - `hostname` : used for API response URL
-- `upload.size.image` : maximum image upload size (prevent huge uploads)
+- `upload.size.image` : maximum data upload size (prevent huge uploads)
 
 #License
 

@@ -1,6 +1,7 @@
 package com.mitchbarry.privoto.core.config;
 
 
+import com.mangofactory.swagger.plugin.EnableSwagger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,16 +20,14 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * Created by Mitchell Barry on 10/15/14.
  */
 
-@Configuration //Marks this class as configuration
-//Specifies which package to scan
+@Configuration
 @ComponentScan("com.mitchbarry.privoto.core")
-//Enables Spring's annotations
 @EnableWebMvc
-//Pull application properties in
 @PropertySource("classpath:/application.properties")
+@EnableSwagger
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Value("${upload.size.image}")
+    @Value("${max.upload.size}")
     private long uploadSize;
 
     @Bean
@@ -59,7 +58,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
+    @Bean
+    public SwaggerConfig springSwaggerConfig() {
+        return new SwaggerConfig();
+    };
+
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/favicon.ico").addResourceLocations("/");
+        // add resource handler for swagger UI?
     }
 }

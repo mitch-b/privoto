@@ -29,11 +29,10 @@ public class FileBasedMessageService implements IMessageService {
     // TODO: deprecate once we can retrieve per-user
     public ArrayList<Message> getMessages() {
         File dir = new File(this.uploadDirectory);
+        ArrayList<Message> messages = new ArrayList<>();
 
         if (!dir.exists())
-            return null;
-
-        ArrayList<Message> messages = new ArrayList<>();
+            return messages;
 
         for (final File fileEntry : dir.listFiles()) {
             if (!fileEntry.isDirectory()) { // do not search recursively ... this is short-term until db

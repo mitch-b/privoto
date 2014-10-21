@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.mitchbarry.privoto.core.interfaces.IMessageService;
 import com.mitchbarry.privoto.core.model.Message;
 import com.mitchbarry.privoto.core.model.MessageType;
+import com.wordnik.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import java.util.UUID;
  * Created by Mitchell Barry on 10/17/14.
  */
 @RestController
+@Api(value = "messages", description = "Send and retrieve messages between users")
 public class MessageController {
 
     private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();

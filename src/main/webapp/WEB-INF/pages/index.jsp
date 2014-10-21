@@ -11,12 +11,30 @@
     <title>privoto</title>
 </head>
 <body>
-    Welcome to privoto.
+    <h1>privoto API</h1>
+    <div>
+        <ul>
+            <li>
+                <code><b>GET</b></code> : <code><a href="/api/messages">/api/messages</a></code>
+            </li>
+            <li>
+                <code><b>GET</b></code> : <code>/api/images/{id}</code>
+                <ul>
+                    <li><code>id</code> - required image id</li>
+                </ul>
+            </li>
+            <li>
+                <code><b>POST</b></code> : <code><a href="/api/messages">/api/messages</a></code>
+                <ul>
+                    <li><code>image</code> - optional file</li>
+                    <li><code>text</code> - optional text</li>
+                    <li><code>delay</code> - optional length of time for message</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <br />
     <br />
-    <a href="/about">about.</a>
-    <br />
-    <br />
-    Check out this <a href="/image">image controller</a>!
+    <a href="/about">about.</a> | <a href="https://github.com/mitch-b/privoto">source.</a>
 </body>
 </html>

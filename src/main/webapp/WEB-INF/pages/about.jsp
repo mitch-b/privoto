@@ -11,10 +11,7 @@
     <title>privoto | About</title>
 </head>
 <body>
-    privoto is a private photo messaging service.
-    <br />
-    Don't let other providers store your messages. Watch over them yourself by hosting your own instance of privoto.
-    <br />
+    privoto is a messaging service. built for learning purposes only.
     <br />
     Find the source at <a href="https://github.com/mitch-b/privoto">GitHub</a>.
 </body>

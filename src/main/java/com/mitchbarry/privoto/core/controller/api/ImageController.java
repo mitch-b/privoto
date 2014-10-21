@@ -1,6 +1,7 @@
 package com.mitchbarry.privoto.core.controller.api;
 
 import com.mitchbarry.privoto.core.interfaces.IImageService;
+import com.wordnik.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/images/**")
+@Api(value = "images", description = "Download images from server")
 public class ImageController {
 
     private IImageService imageService;

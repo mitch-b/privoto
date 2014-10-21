@@ -14,8 +14,8 @@ $ git clone https://github.com/mitch-b/privoto
 **privoto** is built using:
 
 1. IntelliJ IDEA ([Download](https://www.jetbrains.com/idea/download/))
-1. JDK 7 ([Download](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html))
-1. Tomcat 7 ([Download](http://tomcat.apache.org/download-70.cgi))
+1. JDK 8 32-bit ([Download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
+1. Tomcat 8 ([Download](http://tomcat.apache.org/download-80.cgi))
 1. Spring MVC Framework (downloaded with Gradle)
 1. Gradle (Gradle wrapper provided in source - no separate download needed)
 
@@ -33,6 +33,7 @@ To quickly run the project from IntelliJ IDEA, set up a Local Tomcat run configu
 1. Click the `+` button to add a new configuration.
 1. Choose Tomcat Server > Local
 1. Add a name to your configuration (optional) and which browser you want to open on Run (optional).
+1. Choose Tomcat v8 Configuration (if it doesn't exist, add a new one)
 1. Click the Deployment tab. Choose the `+` >  `Artifact...` > `privoto.war` (not exploded).
 
 Now, you should see the Run icon available at the top of the editor. Give it a go.
@@ -46,7 +47,7 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 - `storage.dir` : where files are dropped (may change to db storage in future update?)
 - `protocol` : `[http|https]`
 - `hostname` : used for API response URL
-- `upload.size.image` : maximum data upload size (prevent huge uploads)
+- `max.upload.size` : maximum data upload size (prevent huge uploads)
 
 #License
 
@@ -55,3 +56,4 @@ Now, you should see the Run icon available at the top of the editor. Give it a g
 1. Google Gson - [Apache v2](https://google-gson.googlecode.com/svn/trunk/gson/LICENSE)
 1. Apache Commons IO - [Apache v2](http://www.apache.org/licenses/LICENSE-2.0)
 1. Apache Commons FileUpload - [Apache v2](http://www.apache.org/licenses/LICENSE-2.0)
+1. Swagger Spring MVC - [Apache v2](https://github.com/martypitt/swagger-springmvc#license)

@@ -16,8 +16,10 @@ public class Message {
 
     @Expose
     private UUID id;
+
     @Expose
     private UUID sender;
+
     @Expose
     private UUID receiver;
 

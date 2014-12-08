@@ -1,8 +1,11 @@
 package com.mitchbarry.privoto.core.service;
 
+import com.mitchbarry.privoto.core.dao.MessageDataDAO;
 import com.mitchbarry.privoto.core.interfaces.IMessageService;
 import com.mitchbarry.privoto.core.model.Message;
+import com.mitchbarry.privoto.core.model.MessageData;
 import com.mitchbarry.privoto.core.model.MessageType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +21,9 @@ import java.util.UUID;
  */
 @Service
 public class FileBasedMessageService implements IMessageService {
+
+    @Autowired
+    private MessageDataDAO messageDataDAO;
 
     @Value("${storage.dir}")
     private String uploadDirectory;
@@ -47,6 +53,9 @@ public class FileBasedMessageService implements IMessageService {
                 messages.add(msg);
             }
         }
+
+        // test mysql!
+        MessageData data = messageDataDAO.getMessageData(1);
 
         return messages;
     }

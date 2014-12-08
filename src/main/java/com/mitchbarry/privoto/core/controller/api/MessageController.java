@@ -4,21 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mitchbarry.privoto.core.interfaces.IMessageService;
 import com.mitchbarry.privoto.core.model.Message;
-import com.mitchbarry.privoto.core.model.MessageType;
 import com.wordnik.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Created by Mitchell Barry on 10/17/14.
@@ -35,9 +29,6 @@ public class MessageController {
     public MessageController(IMessageService messageService) {
         this.msgService = messageService;
     }
-
-    @Value("${storage.dir}")
-    private String uploadDirectory;
 
     @RequestMapping(value = {"/api/v1/messages"}, method = RequestMethod.GET)
     public String getMessageList_v1() {
@@ -61,38 +52,10 @@ public class MessageController {
 
         Message msg = new Message();
 
-        if (image == null || image.isEmpty()) {
-            msg.setErrorMessage("ERROR: File contents empty");
-            return gson.toJson(msg);
-        }
+        // configurable log endpoint here?
+        msg = msgService.postMessage(image, text, decay);
 
-
-        try {
-            msg.setData(image.getBytes());
-            msg.setId(UUID.randomUUID());
-            msg.setType(MessageType.Image);
-
-            // create storage directory
-            File dir = new File(this.uploadDirectory);
-            if (!dir.exists())
-                dir.mkdirs();
-
-            // create the file
-            File newImage = new File(dir.getAbsolutePath() +
-                File.separator + msg.getId());
-
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(newImage)
-            );
-
-            stream.write(msg.getData());
-            stream.close();
-
-            msg.setErrorMessage(null);
-
-        } catch (Exception e) {
-            msg.setErrorMessage(String.format("ERROR: %s - %s", e.getMessage(), e.getStackTrace()));
-        }
+        // todo: trigger messaging service for push notifications?
 
         return gson.toJson(msg);
     }
